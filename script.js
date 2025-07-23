@@ -1,7 +1,8 @@
 const bodyEl = document.querySelector("body");
 
- let lastTime = 0;
+let lastTime = 0;
 const delay = 20;
+
 bodyEl.addEventListener("mousemove", (event)=>{
     const now = Date.now();
     if(now - lastTime < delay){
@@ -54,3 +55,16 @@ bodyEl.addEventListener("touchmove", (event)=>{
         spanEl.remove();
     }, 3000);
 })
+
+const instruction = document.getElementsByClassName("instruction")[0];
+
+function hideInstruction() {
+  if (instruction) {
+    instruction.style.display = "none";
+  }
+  window.removeEventListener("mousemove", hideInstruction);
+  window.removeEventListener("touchstart", hideInstruction);
+}
+
+window.addEventListener("mousemove", hideInstruction);
+window.addEventListener("touchstart", hideInstruction);
